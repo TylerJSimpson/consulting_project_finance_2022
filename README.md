@@ -7,7 +7,7 @@ ___
 #### Solution 2: Placeholder
 #### Future Placeholder
 ___
-#### Tools:
+### Tools:
 #### * Programming: Placeholder
 #### * Cloud: Placeholder
 #### * Visualization: Placeholder
