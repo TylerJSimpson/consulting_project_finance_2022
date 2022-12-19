@@ -21,9 +21,10 @@ ___
 #### VISUALIZING & SERVING:
 * PowerBI published web app for near real-time analysis utilizing security levels for departments. Reports generated via DAX code in Power Automate pipelines and sent out via Email to key stakeholders.  
 ### Further future considerations:  
-* Utilizing an API for external the customer data source(s).  
+* Developing an API for external customer data source(s).  
+* Implementing Azure Logic Apps to fill gaps once migration to Azure is complete.
 ___
 ### Tools:
 #### * Programming: T-SQL, DAX
-#### * Cloud: Azure, Power Automate, SharePoint
+#### * Cloud: Azure, Power Platform
 #### * Visualization: Power BI
