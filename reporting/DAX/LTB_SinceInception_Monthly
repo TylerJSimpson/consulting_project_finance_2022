@@ -1,0 +1,50 @@
+// DAX Query: Gathers contact information and look-to-book for dealers.
+DEFINE
+  VAR __ValueFilterDM0 = 
+    FILTER(
+      KEEPFILTERS(
+        SUMMARIZECOLUMNS(
+          'dealer_dimension'[Dealer Name],
+          'dealer_dimension'[Contact],
+          'dealer_dimension'[Phone Number],
+          'dealer_dimension'[Email],
+          'dealer_dimension'[Dealer Group],
+          'dealer_dimension'[Region],
+          'dealer_dimension'[State],
+          "LTB", 'App List'[LTB],
+          "App___Count", 'App List'[App # Count],
+          "funded_count", 'App List'[funded_count],
+          "AverageScore", CALCULATE(AVERAGE('App List'[Score]))
+        )
+      ),
+      NOT(ISBLANK([App___Count]))
+    )
+
+  VAR __DS0Core = 
+    SUMMARIZECOLUMNS(
+      'dealer_dimension'[Dealer Name],
+      'dealer_dimension'[Contact],
+      'dealer_dimension'[Phone Number],
+      'dealer_dimension'[Email],
+      'dealer_dimension'[Dealer Group],
+      'dealer_dimension'[Region],
+      'dealer_dimension'[State],
+      __ValueFilterDM0,
+      "LTB", 'App List'[LTB],
+      "App_Count", 'App List'[App # Count],
+      "Funded_Count", 'App List'[funded_count],
+      "Score_Average", CALCULATE(AVERAGE('App List'[Score]))
+    )
+
+EVALUATE
+  __DS0Core
+
+ORDER BY
+  [LTB] DESC,
+  'dealer_dimension'[Dealer Name],
+  'dealer_dimension'[Contact],
+  'dealer_dimension'[Phone Number],
+  'dealer_dimension'[Email],
+  'dealer_dimension'[Dealer Group],
+  'dealer_dimension'[Region],
+  'dealer_dimension'[State]
