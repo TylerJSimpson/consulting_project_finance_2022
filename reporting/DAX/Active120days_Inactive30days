@@ -1,0 +1,33 @@
+// DAX Query: Gathers contact information for dealers that were active in the past 120 days but inactive in the past 30 days.
+DEFINE
+  VAR __DS0FilterTable = 
+    FILTER(
+      KEEPFILTERS(VALUES('Dealer Status'[MaxDate])),
+      NOT('Dealer Status'[MaxDate] IN {BLANK()})
+    )
+
+  VAR __DS0FilterTable2 = 
+    TREATAS({"Inactive"}, 'Dealer Status'[A/I 30 days])
+
+  VAR __DS0FilterTable3 = 
+    TREATAS({"Active"}, 'Dealer Status'[A/I 120 days])
+
+  VAR __DS0Core = 
+    SUMMARIZECOLUMNS(
+     'dealer_dimension'[Dealer Name],
+      __DS0FilterTable,
+      __DS0FilterTable2,
+      __DS0FilterTable3,
+      "Contact", CALCULATE(MIN('dealer_dimension'[Contact])),
+      "Email", CALCULATE(MIN('dealer_dimension'[Email])),
+      "AppOne", CALCULATE(SUM('dealer_dimension'[AppOne #]))
+    )
+
+  VAR __DS0PrimaryWindowed = 
+    TOPN(501, __DS0Core, 'dealer_dimension'[Dealer Name], 1)
+
+EVALUATE
+  __DS0PrimaryWindowed
+
+ORDER BY
+  'dealer_dimension'[Dealer Name]
