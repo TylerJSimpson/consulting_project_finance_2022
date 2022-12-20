@@ -1,4 +1,4 @@
-// DAX Query: Gathers contact information for dealers that were active in the past 120 days but inactive in the past 30 days.
+// DAX Query: Gathers contact information for dealers by region that were active in the past 120 days but inactive in the past 30 days.
 DEFINE
   VAR __DS0FilterTable = 
     FILTER(
