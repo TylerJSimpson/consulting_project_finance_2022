@@ -1,0 +1,46 @@
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_office365",
+            "operationId": "OnNewEmailV3",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+        },
+        "parameters": {
+            "folderPath": "Id::AAMkAGZiMTU5OTZiLTU3ZTItNDMxNy1iZWU0LTJkYmU5NGRjOTNlNwAuAAAAAAB2t0PxvyiRSo5gaG0tWi_TAQAzHZEJMQn5SY8dr4Fjb-qGAAAelgzeAAA=",
+            "includeAttachments": true,
+            "importance": "Any",
+            "fetchOnlyWithAttachment": true
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "metadata": {
+        "Id::AAMkAGZiMTU5OTZiLTU3ZTItNDMxNy1iZWU0LTJkYmU5NGRjOTNlNwAuAAAAAAB2t0PxvyiRSo5gaG0tWi_TAQAzHZEJMQn5SY8dr4Fjb-qGAAAelgzeAAA=": "Applications Data",
+        "operationMetadataId": "b02e2405-9e16-4842-9c7d-5a993daaaf82"
+    },
+    "splitOn": "@triggerOutputs()?['body/value']"
+}
+
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_sharepointonline",
+            "operationId": "CreateFile",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+        },
+        "parameters": {
+            "dataset": "https://recfi.sharepoint.com/sites/PowerBI",
+            "folderPath": "/Shared Documents/PowerBI/Application Data Append",
+            "name": "@items('Apply_to_each')?['name']",
+            "body": "@items('Apply_to_each')?['contentBytes']"
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "runtimeConfiguration": {
+        "contentTransfer": {
+            "transferMode": "Chunked"
+        }
+    },
+    "metadata": {
+        "operationMetadataId": "57d3c8c2-36db-4154-981c-d5e99a8e9dc8"
+    }
+}
