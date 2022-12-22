@@ -1,0 +1,65 @@
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_office365",
+            "operationId": "OnNewEmailV3",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+        },
+        "parameters": {
+            "folderPath": "Id::AAMkAGZiMTU5OTZiLTU3ZTItNDMxNy1iZWU0LTJkYmU5NGRjOTNlNwAuAAAAAAB2t0PxvyiRSo5gaG0tWi_TAQAzHZEJMQn5SY8dr4Fjb-qGAAAgBV5KAAA=",
+            "includeAttachments": true,
+            "importance": "Any",
+            "fetchOnlyWithAttachment": true
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "metadata": {
+        "Id::AAMkAGZiMTU5OTZiLTU3ZTItNDMxNy1iZWU0LTJkYmU5NGRjOTNlNwAuAAAAAAB2t0PxvyiRSo5gaG0tWi_TAQAzHZEJMQn5SY8dr4Fjb-qGAAAelgzeAAA=": "Applications Data",
+        "operationMetadataId": "b02e2405-9e16-4842-9c7d-5a993daaaf82",
+        "Id::AAMkAGZiMTU5OTZiLTU3ZTItNDMxNy1iZWU0LTJkYmU5NGRjOTNlNwAuAAAAAAB2t0PxvyiRSo5gaG0tWi_TAQAzHZEJMQn5SY8dr4Fjb-qGAAAgBV5KAAA=": "Funding Data"
+    },
+    "splitOn": "@triggerOutputs()?['body/value']"
+}
+
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_office365",
+            "operationId": "GetEmailV2",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+        },
+        "parameters": {
+            "messageId": "@triggerOutputs()?['body/id']",
+            "includeAttachments": true
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "metadata": {
+        "operationMetadataId": "8d6dae23-bcdb-416d-a468-3941a91c87de"
+    }
+}
+
+{
+    "inputs": {
+        "host": {
+            "connectionName": "shared_sharepointonline_1",
+            "operationId": "CreateFile",
+            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+        },
+        "parameters": {
+            "dataset": "https://recfi.sharepoint.com/sites/PowerBI",
+            "folderPath": "/Shared Documents/PowerBI/Funding Data Append",
+            "name": "@items('Apply_to_each')?['name']",
+            "body": "@items('Apply_to_each')?['contentBytes']"
+        },
+        "authentication": "@parameters('$authentication')"
+    },
+    "runtimeConfiguration": {
+        "contentTransfer": {
+            "transferMode": "Chunked"
+        }
+    },
+    "metadata": {
+        "operationMetadataId": "66b9abc5-bdae-4c1e-8660-86e9b7a8bdca"
+    }
+}
