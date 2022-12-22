@@ -47,7 +47,7 @@
             "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
         },
         "parameters": {
-            "dataset": "https://recfi.sharepoint.com/sites/PowerBI",
+            "dataset": "https://REDACTED.sharepoint.com/sites/PowerBI",
             "folderPath": "/Shared Documents/PowerBI/Funding Data Append",
             "name": "@items('Apply_to_each')?['name']",
             "body": "@items('Apply_to_each')?['contentBytes']"
