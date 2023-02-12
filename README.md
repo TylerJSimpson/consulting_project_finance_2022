@@ -3,7 +3,7 @@
 ### Engineered a cloud data solution utilizing Azure and Power Platform including Azure SQL, Azure Blob Storage, Power BI, and Power Automate.
 ___
 ### Problem:  
-#### The customer lacked analytics infrastructure and wanted to begin making data-drives business decisions while minimizing costs and utilizing the Microsoft platform.
+#### The customer lacked analytics infrastructure and wanted to begin making data-driven business decisions while minimizing costs and utilizing the Microsoft platform.
 ### Solution:  
 #### ARCHITECTURE:  
 * **Short-term license requirements** - Admin access to the customer's existing 365 Enterprise license and purchasing of PowerBI licenses as minimum requirements for a solution. 
